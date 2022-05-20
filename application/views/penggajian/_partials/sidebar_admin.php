@@ -1,0 +1,28 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+?>
+<div class="main-sidebar sidebar-style-2">
+  <aside id="sidebar-wrapper">
+    <div class="sidebar-brand">
+      <a href="<?php echo base_url('admin/dashboard'); ?>"><?= SEKOLAH ?></a>
+    </div>
+    <div class="sidebar-brand sidebar-brand-sm">
+      <a href="<?php echo base_url('admin/dashboard'); ?>">St</a>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="menu-header">Admin</li>
+      <li class="<?php echo $this->uri->segment(2) == 'dashboard' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a></li>
+      <li class="<?php echo $this->uri->segment(1) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('profile'); ?>"><i class="far fa-user"></i> <span>Profile</span></a></li>
+
+      <li class="menu-header">Master Data</li>
+      <li class="<?php echo $this->uri->segment(2) == 'users' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('admin/users'); ?>"><i class="fas fa-users"></i> <span>Users</span></a></li>
+      <li class="<?php echo $this->uri->segment(2) == 'jabatan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('admin/jabatan'); ?>"><i class="fas fa-tag"></i> <span>Jabatan</span></a></li>
+      <li class="<?php echo $this->uri->segment(2) == 'guru' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('admin/guru'); ?>"><i class="fas fa-graduation-cap"></i> <span>Guru</span></a></li>
+      
+      <li class="menu-header">Transaksi</li>
+      <li class="<?php echo $this->uri->segment(1) == 'gaji' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('gaji'); ?>"><i class="fas fa-credit-card"></i> <span>Gaji</span></a></li>
+
+    </ul>
+
+  </aside>
+</div>
