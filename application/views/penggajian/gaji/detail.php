@@ -12,7 +12,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <div class="card card-primary">
                         <div class="card-body">
-                            <a class="btn btn-primary float-right btn-sm" href="">Cetak Slip Gaji</a>
+                            <a class="btn btn-primary float-right btn-sm" href="<?= base_url('laporan/cetak_slip/' . $gajiHeader['id']) ?>" target="_blank">Cetak Slip Gaji</a>
                             <table class="table table-sm col-lg-6 col-md-7 col-sm-12">
                                 <tr>
                                     <th>NIP</th>
@@ -54,7 +54,7 @@
                                 </tr>
                             </table>
                             <hr>
-                         
+
                         </div>
                     </div>
 

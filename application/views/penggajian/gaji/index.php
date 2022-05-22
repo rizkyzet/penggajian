@@ -12,30 +12,34 @@
         <div class="col-12">
           <?= $this->session->flashdata('pesan') ?>
 
-          <div class="form-row mb-4">
-            <div class="form-group col-2">
-              <label for="bulan">Bulan</label>
-              <select name="bulan" id="bulan" class="form-control">
-                <option value="">Pilih Bulan</option>
-                <?php for ($bulan = 1; $bulan <= 12; $bulan++) : ?>
-                  <option value="<?= $bulan ?>"><?= $bulan ?></option>
-                <?php endfor ?>
-              </select>
+          <form action="<?= base_url('laporan/cetak_semua_gaji') ?>" method="POST" target="_blank">
+            <div class="form-row mb-4">
+              <div class="form-group col-2">
+                <label for="bulan">Bulan</label>
+                <select name="bulan" id="bulan" class="form-control">
+                  <option value="">Pilih Bulan</option>
+                  <?php for ($bulan = 1; $bulan <= 12; $bulan++) : ?>
+                    <option value="<?= $bulan ?>"><?= $bulan ?></option>
+                  <?php endfor ?>
+                </select>
+              </div>
+              <div class="form-group col-2">
+                <label for="tahun">Tahun</label>
+                <select name="tahun" id="tahun" class="form-control">
+                  <option value="">Pilih Tahun</option>
+                  <?php for ($tahun = 2015; $tahun <= date('Y'); $tahun++) : ?>
+                    <option value="<?= $tahun ?>"><?= $tahun ?></option>
+                  <?php endfor ?>
+                </select>
+              </div>
+              <div class="form-group col-2 pt-4">
+                <button class="btn btn-primary mt-2">Cetak</button>
+              </div>
+              <div class="form-group col-2 pt-2 ml-auto">
+                <a class="btn btn-primary mt-4" href="<?= base_url('gaji/buat/') ?>" target="__blank">Buat Gaji</a>
+              </div>
             </div>
-            <div class="form-group col-2">
-              <label for="tahun">Tahun</label>
-              <select name="tahun" id="tahun" class="form-control">
-                <option value="">Pilih Tahun</option>
-                <?php for ($tahun = 2015; $tahun <= date('Y'); $tahun++) : ?>
-                  <option value="<?= $tahun ?>"><?= $tahun ?></option>
-                <?php endfor ?>
-              </select>
-            </div>
-            <div class="form-group col-2 pt-2 ml-auto">
-              <a class="btn btn-primary mt-4" href="<?= base_url('gaji/buat/') ?>" target="__blank">Buat Gaji</a>
-            </div>
-          </div>
-
+          </form>
 
 
           <div class="container-table">

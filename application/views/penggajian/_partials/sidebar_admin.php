@@ -22,6 +22,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
       <li class="menu-header">Transaksi</li>
       <li class="<?php echo $this->uri->segment(1) == 'gaji' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('gaji'); ?>"><i class="fas fa-credit-card"></i> <span>Gaji</span></a></li>
 
+      <li class="menu-header">Laporan</li>
+      <li class="<?php echo $this->uri->segment(1) == 'laporan' && $this->uri->segment(2) == 'users' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('laporan/users'); ?>"><i class="fas fa-chart-area"></i> <span>Laporan Daftar Pengguna</span></a></li>
+      <li class="<?php echo $this->uri->segment(1) == 'laporan' && $this->uri->segment(2) == 'guru' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('laporan/guru'); ?>"><i class="fas fa-credit-card"></i> <span>Laporan Daftar Guru</span></a></li>
+      <li class="<?php echo $this->uri->segment(1) == 'laporan' && $this->uri->segment(2) == 'gaji' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url('laporan/gaji'); ?>"><i class="fas fa-credit-card"></i> <span>Laporan Daftar Gaji</span></a></li>
+
     </ul>
 
   </aside>

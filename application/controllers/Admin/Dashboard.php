@@ -12,8 +12,9 @@ class Dashboard extends CI_Controller
 
         $data = [
             'totalAdmin'=> count($this->db->get_where('user',['role_id'=>1])->result_array()),
-            'totalBendahara'=>count($this->db->get_where('user',['role_id'=>2])->result_array()),
-            'totalGuru'=>count($this->db->get('guru')->result_array())
+            'totalBendahara'=>count($this->db->get_where('user',['role_id'=>3])->result_array()),
+            'totalGuru'=>count($this->db->get('guru')->result_array()),
+            'totalKepsek'=>count($this->db->get_where('user',['role_id'=>4])->result_array())
         ];
 
         $this->load->view('penggajian/_partials/header');

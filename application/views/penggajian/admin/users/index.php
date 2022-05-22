@@ -25,6 +25,7 @@
                                 <th>Alamat</th>
                                 <th>No. HP</th>
                                 <th>Jenis Kelamin</th>
+                                <th>Role</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,6 +42,7 @@
                                     <td><?= $u['alamat'] ?></td>
                                     <td><?= $u['no_hp'] ?></td>
                                     <td><?= jenisKelamin($u['jk']) ?></td>
+                                    <td><?= getRoleName($u['role_id']) ?></td>
                                     <td>
                                         <a class="btn btn-primary" href="<?= base_url('admin/users/edit/' . $u['username']) ?>">Edit</a>
                                         <a class="btn btn-danger" href="<?= base_url('admin/users/delete/' . $u['username']) ?>" onclick="return confirm('yakin')">Hapus</a>
