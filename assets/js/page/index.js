@@ -4,7 +4,7 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
+    labels: ["January", "February", "March", "April", "May", "June", "July", "August",],
     datasets: [{
       label: 'Sales',
       data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],

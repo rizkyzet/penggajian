@@ -8,6 +8,9 @@ class Gaji extends CI_Controller
     {
         parent::__construct();
         checkLogin();
+        if(isKepsek()){
+            redirect('dashboard');
+        }
         $this->load->model('User_model');
         $this->load->model('Gaji_model');
         $this->load->model('Validation_model');
@@ -25,9 +28,12 @@ class Gaji extends CI_Controller
         $this->load->view('penggajian/_partials/header');
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
-        } elseif ($data['roleName'] == 'guru') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        }elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
+
         $this->load->view('penggajian/gaji/index', $data);
         $this->load->view('penggajian/_partials/footer');
     }
@@ -75,8 +81,10 @@ class Gaji extends CI_Controller
         $this->load->view('penggajian/_partials/header');
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
-        } elseif ($data['roleName'] == 'guru') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        }elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
         $this->load->view('penggajian/gaji/buat', $data);
         $this->load->view('penggajian/_partials/footer');
@@ -220,8 +228,10 @@ class Gaji extends CI_Controller
         $this->load->view('penggajian/_partials/header');
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
-        } elseif ($data['roleName'] == 'guru') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        }elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
         $this->load->view('penggajian/gaji/edit', $data);
         $this->load->view('penggajian/_partials/footer');
@@ -387,8 +397,10 @@ class Gaji extends CI_Controller
         $this->load->view('penggajian/_partials/header');
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
-        } elseif ($data['roleName'] == 'guru') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        }elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
         $this->load->view('penggajian/gaji/detail', $data);
         $this->load->view('penggajian/_partials/footer');

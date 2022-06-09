@@ -24,7 +24,7 @@ function checkLogin()
 
     if (!$checkLogin) {
         $ci->session->set_flashdata('pesan', '<div class="alert alert-danger">
-        Session habis.
+        Session habis, silahkan login kembali.
       </div>');
         redirect('auth');
     }
@@ -155,4 +155,32 @@ function bulan($bln)
             break;
     }
     return $bulan;
+}
+
+function isAdmin()
+{
+    $ci = get_instance();
+
+    if (getRoleName($ci->session->userdata('role_id')) == 'admin') {
+        return true;
+    }
+}
+
+
+function isBendahara()
+{
+    $ci = get_instance();
+
+    if (getRoleName($ci->session->userdata('role_id')) == 'bendahara') {
+        return true;
+    }
+}
+
+function isKepsek()
+{
+    $ci = get_instance();
+
+    if (getRoleName($ci->session->userdata('role_id')) == 'kepsek') {
+        return true;
+    }
 }

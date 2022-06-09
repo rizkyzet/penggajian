@@ -14,6 +14,7 @@ class Laporan extends CI_Controller
         $this->load->model('Gaji_model');
         $this->load->model('Validation_model');
         $this->load->model('Guru_model');
+        $this->load->model('Absen_model');
     }
 
     public function cetak_slip($id)
@@ -69,6 +70,10 @@ class Laporan extends CI_Controller
 
     public function users()
     {
+
+        if(isBendahara()){
+            redirect('dashboard');
+        }
         $data['user'] =  $this->User_model->getUserByUsername($this->session->userdata('username'));
         $data['roleName'] = getRoleName($data['user']['role_id']);
         $data['gajiGuru'] = $this->Gaji_model->getGajiJoinGuru();
@@ -79,7 +84,9 @@ class Laporan extends CI_Controller
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
         } elseif ($data['roleName'] == 'kepsek') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        } elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
         $this->load->view('penggajian/laporan/users', $data);
         $this->load->view('penggajian/_partials/footer');
@@ -121,6 +128,9 @@ class Laporan extends CI_Controller
 
     public function guru()
     {
+        if(isBendahara()){
+            redirect('dashboard');
+        }
         $data['user'] =  $this->User_model->getUserByUsername($this->session->userdata('username'));
         $data['roleName'] = getRoleName($data['user']['role_id']);
         $data['gajiGuru'] = $this->Gaji_model->getGajiJoinGuru();
@@ -132,7 +142,9 @@ class Laporan extends CI_Controller
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
         } elseif ($data['roleName'] == 'kepsek') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        } elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
 
         $this->load->view('penggajian/laporan/guru', $data);
@@ -175,6 +187,7 @@ class Laporan extends CI_Controller
 
     public function gaji()
     {
+
         $data['user'] =  $this->User_model->getUserByUsername($this->session->userdata('username'));
         $data['roleName'] = getRoleName($data['user']['role_id']);
         $data['jabatan'] = $this->db->get('jabatan')->result_array();
@@ -184,7 +197,9 @@ class Laporan extends CI_Controller
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
         } elseif ($data['roleName'] == 'kepsek') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        } elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
 
         $this->load->view('penggajian/laporan/gaji', $data);
@@ -232,6 +247,66 @@ class Laporan extends CI_Controller
             'orientation' => 'L'
         ]);
         $view = $this->load->view('penggajian/laporan/cetak-gaji', $data, TRUE);
+        $mpdf->WriteHTML($view);
+        $mpdf->Output();
+    }
+
+    public function absen()
+    {
+
+        $data['user'] =  $this->User_model->getUserByUsername($this->session->userdata('username'));
+        $data['roleName'] = getRoleName($data['user']['role_id']);
+        $data['jabatan'] = $this->db->get('jabatan')->result_array();
+
+        // $this->load->view('dist/_partials/header');
+        $this->load->view('penggajian/_partials/header');
+        if ($data['roleName'] == 'admin') {
+            $this->load->view('penggajian/_partials/sidebar_admin');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        } elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
+        }
+
+        $this->load->view('penggajian/laporan/absen', $data);
+        $this->load->view('penggajian/_partials/footer');
+    }
+
+
+    public function cetak_absen()
+    {
+        $bulan = $this->input->post('bulan');
+        $tahun = $this->input->post('tahun');
+
+        $where = [];
+
+        if ($bulan != '') {
+            $where['absen.bulan'] = (int) $bulan;
+        }
+
+        if ($tahun != '') {
+            $where['absen.tahun'] = (int) $tahun;
+        }
+
+        if (count($where) > 0) {
+            $data['absen'] = $this->Absen_model->getAllAbsenJoinGuruWhere($where);
+        } else {
+            $data['absen'] = $this->Gaji_model->getAbsenJoinGuru();
+        }
+
+        if (count($data['absen']) == 0) {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
+            Data Kosong
+          </div>');
+            redirect('laporan/absen');
+        }
+
+        $mpdf = new Mpdf([
+            'mode' => 'utf-8',
+            'format' => 'A4-L',
+            'orientation' => 'L'
+        ]);
+        $view = $this->load->view('penggajian/laporan/cetak-absen', $data, TRUE);
         $mpdf->WriteHTML($view);
         $mpdf->Output();
     }

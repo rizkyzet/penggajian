@@ -19,7 +19,6 @@ $(document).ready(function () {
     $('#id_guru').on('change', function () {
         const idGuru = $(this).val();
 
-
         $.ajax({
             url: 'http://localhost/penggajian/gaji/get_gaji_pokok',
             cache: false,

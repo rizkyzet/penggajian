@@ -29,14 +29,22 @@ class Auth extends CI_Controller
 
                         $this->session->set_userdata($data_session);
                         redirect('admin/dashboard');
-                    } elseif ($userRole['nama_role'] == 'guru') {
+                    } elseif ($userRole['nama_role'] == 'bendahara') {
                         $data_session = [
                             'username' => $userData['username'],
                             'role_id' => $userRole['id']
                         ];
 
                         $this->session->set_userdata($data_session);
-                        redirect('bendahara/dashboard');
+                        redirect('dashboard');
+                    } elseif ($userRole['nama_role'] == 'kepsek') {
+                        $data_session = [
+                            'username' => $userData['username'],
+                            'role_id' => $userRole['id']
+                        ];
+
+                        $this->session->set_userdata($data_session);
+                        redirect('dashboard');
                     }
                 } else {
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger">
@@ -52,6 +60,13 @@ class Auth extends CI_Controller
             }
         }
     }
+
+    // public function ajaks()
+    // {
+    //     $kabupaten = $this->input->post('kabupaten')['kota_kabupaten'];
+
+    //    $this->db->insert
+    // }
 
     public function logout()
     {

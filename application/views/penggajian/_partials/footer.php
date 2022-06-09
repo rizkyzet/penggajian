@@ -1,6 +1,6 @@
 <footer class="main-footer">
   <div class="footer-left">
-    Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+    Copyright &copy; 2022 <div class="bullet"></div> <?= SEKOLAH ?>
   </div>
   <div class="footer-right">
 
@@ -36,10 +36,19 @@
 <script src="<?= base_url(); ?>assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
 <script src="<?= base_url(); ?>assets/modules/izitoast/js/iziToast.min.js"></script>
 
+<script src="<?= base_url(); ?>assets/modules/jquery.sparkline.min.js"></script>
+<script src="<?= base_url(); ?>assets/modules/chart.min.js"></script>
+<script src="<?= base_url(); ?>assets/modules/owlcarousel2/dist/owl.carousel.min.js"></script>
+<script src="<?= base_url(); ?>assets/modules/summernote/summernote-bs4.js"></script>
+<script src="<?= base_url(); ?>assets/modules/chocolat/dist/js/jquery.chocolat.min.js"></script>
+
+
 <!-- Page Specific JS File -->
 <script src="<?= base_url(); ?>assets/js/page/modules-datatables.js"></script>
 <script src="<?= base_url(); ?>assets/js/page/bootstrap-modal.js"></script>
 
+
+<script src="<?= base_url(); ?>assets/js/chartDashboard.js"></script>
 
 
 <script>
@@ -80,10 +89,10 @@
 
 <!-- MY JS -->
 <script src="<?= base_url('assets/js/myscript.js') ?>"></script>
-<?php if ($this->uri->segment(1) == 'gaji' && $this->uri->segment(2) == 'buat' ) : ?>
+<?php if ($this->uri->segment(1) == 'gaji' && $this->uri->segment(2) == 'buat') : ?>
   <script src="<?= base_url('assets/js/buatGaji.js') ?>"></script>
 <?php endif ?>
-<?php if ($this->uri->segment(1) == 'gaji' && $this->uri->segment(2) == 'edit' ) : ?>
+<?php if ($this->uri->segment(1) == 'gaji' && $this->uri->segment(2) == 'edit') : ?>
   <script src="<?= base_url('assets/js/editGaji.js') ?>"></script>
 <?php endif ?>
 

@@ -8,6 +8,9 @@ class Users extends CI_Controller
     {
         parent::__construct();
         checkLogin();
+        if (!isAdmin()) {
+            redirect('dashboard');
+        }
     }
 
 

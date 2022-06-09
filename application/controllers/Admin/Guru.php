@@ -9,6 +9,9 @@ class Guru extends CI_Controller
         parent::__construct();
         checkLogin();
         $this->load->model('Guru_model');
+        if (!isAdmin()) {
+            redirect('dashboard');
+        }
     }
 
 

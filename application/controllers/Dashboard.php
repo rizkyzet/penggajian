@@ -3,7 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+        checkLogin();
+        $this->load->model('User_model');
+        $this->load->model('Gaji_model');
+        $this->load->model('Validation_model');
+        $this->load->model('Guru_model');
+    }
     public function index()
     {
 
@@ -16,9 +24,20 @@ class Dashboard extends CI_Controller
             'totalGuru' => count($this->db->get('guru')->result_array()),
             'totalKepsek' => count($this->db->get_where('user', ['role_id' => 4])->result_array())
         ];
+        $data['user'] =  $this->User_model->getUserByUsername($this->session->userdata('username'));
+        $data['roleName'] = getRoleName($data['user']['role_id']);
+        
+        $this->load->view('penggajian/_partials/header');
 
         $this->load->view('penggajian/_partials/header');
-        $this->load->view('penggajian/_partials/sidebar_admin');
+        if ($data['roleName'] == 'admin') {
+            $this->load->view('penggajian/_partials/sidebar_admin');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        }elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
+        }
+
         $this->load->view('penggajian/admin/dashboard/index', $data);
         $this->load->view('penggajian/_partials/footer');
     }

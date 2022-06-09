@@ -7,6 +7,9 @@ class Jabatan extends CI_Controller
     {
         parent::__construct();
         checkLogin();
+        if (!isAdmin()) {
+            redirect('dashboard');
+        }
     }
 
     public function index()

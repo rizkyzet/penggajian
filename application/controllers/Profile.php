@@ -23,8 +23,10 @@ class Profile extends CI_Controller
         $this->load->view('penggajian/_partials/header');
         if ($data['roleName'] == 'admin') {
             $this->load->view('penggajian/_partials/sidebar_admin');
-        } elseif ($data['roleName'] == 'guru') {
-            $this->load->view('penggajian/_partials/sidebar_guru');
+        } elseif ($data['roleName'] == 'kepsek') {
+            $this->load->view('penggajian/_partials/sidebar_kepsek');
+        } elseif ($data['roleName'] == 'bendahara') {
+            $this->load->view('penggajian/_partials/sidebar_bendahara');
         }
         $this->load->view('penggajian/profile/index', $data);
         $this->load->view('penggajian/_partials/footer');
@@ -51,8 +53,10 @@ class Profile extends CI_Controller
             $this->load->view('penggajian/_partials/header');
             if ($data['roleName'] == 'admin') {
                 $this->load->view('penggajian/_partials/sidebar_admin');
-            } elseif ($data['roleName'] == 'guru') {
-                $this->load->view('penggajian/_partials/sidebar_guru');
+            } elseif ($data['roleName'] == 'kepsek') {
+                $this->load->view('penggajian/_partials/sidebar_kepsek');
+            } elseif ($data['roleName'] == 'bendahara') {
+                $this->load->view('penggajian/_partials/sidebar_bendahara');
             }
             $this->load->view('penggajian/profile/edit_profile', $data);
             $this->load->view('penggajian/_partials/footer');

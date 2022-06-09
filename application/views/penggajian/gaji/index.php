@@ -62,7 +62,7 @@
                     <td><?= $i++ ?></td>
                     <td><?= $g['nip'] ?></td>
                     <td><?= $g['nama'] ?></td>
-                    <td><?= $g['bulan'] ?></td>
+                    <td><?= bulan($g['bulan']) ?></td>
                     <td><?= $g['tahun'] ?></td>
                     <td><?= rupiah($g['total_gaji']) ?></td>
                     <td>
